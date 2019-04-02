@@ -1,0 +1,145 @@
+<script>
+
+// class Animal{
+//   constructor(nameOfPet,address,owner,age){
+//     this.petId = Math.random() * 100000;
+//     this.petName = nameOfPet;
+//     this.address = address;
+//     this.owner = owner;
+//     this.age = age;
+//   }
+//
+//   play() {
+//     console.log(this.petName + ' plays for a few minutes.');
+//   };
+//   runs() {
+//     console.log(this.petName + ' runs uncontrollably.');
+//   }
+//   home() {
+//     console.log(this.petName + ' lives in ' + this.address);
+//   }
+//   old() {
+//     console.log(this.petName + ' is ' + this.age + ' years old.');
+//   }
+//
+// }
+// class Dog extends Animal {
+//   constructor(loyalty, petName, address, owner, age){
+//     super(petName, address, owner, age);
+//     this.loyalty = 0;
+// }
+//
+//
+// //METHOD OVERRIDING
+//   play() {
+//     if (this.energy <= 0 ){
+//       console.log(this.petName + ' is too tired to play');
+//       console.log('Energy level is ' + this.energy)
+//     } else {
+//       console.log(this.petName + ' fetches for a few minutes');
+//       this.energy = this.energy - 100;
+//       this.loyalty = this.loyalty + 100;
+//       console.log('Energy level is ' + this.energy)
+//     }
+//   }
+//   bark() {
+//       console.log(this.petName + 'barks at evey1 in the hood');
+//   }
+// }
+// class Cat extends Animal {
+//   constructor(petName, address, owner, age){
+//     super(petName, address, owner, age);
+//   }
+//
+//   purr() {
+//     console.log(this.petName + ' purrs!');
+//   }
+//   eat() {
+//     console.log(this.petName + ' eats!')
+//   }
+// }
+//
+//
+//
+//
+// let myPet = new Animal('Alex', '123 Bernal Heights', 'Francisco', '01.08.2002');
+// let myDog = new Dog('batman','123 bernal','eduardo',6);
+// let myCat = new Cat('Curly','123 bernal','eduardo',4);
+//
+//
+// myPet.play();
+// myCat.purr();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Vehicle {
+  constructor(make,model,year,color){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color
+  }
+}
+
+class ElectricCar extends Vehicle {
+  constructor(make, model, year, color, batterySize, currentCharge, batteryAge) {
+    super(make, model, year, color);
+    this.batterySize = batterySize;
+    this.currentCharge = currentCharge;
+    this.batteryAge = batteryAge;
+  }
+}
+
+class Truck extends Vehicle {
+  constructor(make, model, year, color, tankSize, fuelType, topSpeed){
+    super(make, model, year, color);
+    this.tankSize = tankSize;
+    this.fuelType = fuelType;
+    this.topSpeed = topSpeed;
+  }
+}
+
+class Motorcycle extends Vehicle {
+  constructor(make, model, year, color, engineCC, tireSize, tankSize){
+    super(make, model, year, color);
+    this.engineCC = engineCC;
+    this.tireSize = tireSize;
+    this.tankSize = tankSize;
+  }
+}
+
+
+let myElectricCar = new ElectricCar('elio', 'one', '2019', 'red', '200v', '40hrs', '2 years');
+let myTruck = new Truck('ford', 'nissan', 2009, 'red', 'diesel', '130mph');
+let myMotorcyle = new Motorcycle('Harley', 'MOTOHELI','2015', 'red', '120cc', '24 tiresize', '22tankSize');
+
+
+console.log(myElectricCar.model);
+console.log(myTruck.model);
+console.log(myMotorcyle.model)
+
+
+
+</script>
