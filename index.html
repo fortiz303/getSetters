@@ -82,7 +82,7 @@
 
 
 
-
+//----------------->
 
 
 
@@ -101,6 +101,39 @@ class Vehicle {
     this.year = year;
     this.color = color
   }
+  getThisMake(){
+    return this.make;
+  }
+  getThisModel(){
+    return this.model;
+  }
+  getThisYear(){
+    return this.year;
+  }
+  setThisColor(data){
+    this.color = data;
+  }
+  getThisColor(){
+    return this.color;
+  }
+}
+
+class Car extends Vehicle {
+  constructor(make, model, year, color, tankSize, remoteSpeed,trunkSize) {
+    super(make, model, year, color);
+    this.tankSize = tankSize;
+    this.remoteSpeed = remoteSpeed;
+    this.trunkSize = trunkSize;
+  }
+  drive(){
+    console.log('my car drives');
+  }
+  setColor(data){
+    this.color = data;
+  }
+  getColor(){
+    return this.color;
+  }
 }
 
 class ElectricCar extends Vehicle {
@@ -110,36 +143,162 @@ class ElectricCar extends Vehicle {
     this.currentCharge = currentCharge;
     this.batteryAge = batteryAge;
   }
+  setBatterySize(data){
+    this.batterySize = data;
+  }
+  getBatterySize(){
+    return this.batterySize;
+  }
 }
 
 class Truck extends Vehicle {
-  constructor(make, model, year, color, tankSize, fuelType, topSpeed){
+  constructor(make, model, year, color, tankSize, fuelType, topSpeed,mpg){
+
     super(make, model, year, color);
-    this.tankSize = tankSize;
-    this.fuelType = fuelType;
-    this.topSpeed = topSpeed;
+    this.tankSizeGallons = tankSize;
+    this.currentFuelGallons = tankSize;
+    this.fuelType = 'diesel';
+    this.topSpeedMPH = topSpeed;
+    this.mpg = mpg;
   }
-}
 
-class Motorcycle extends Vehicle {
-  constructor(make, model, year, color, engineCC, tireSize, tankSize){
-    super(make, model, year, color);
-    this.engineCC = engineCC;
-    this.tireSize = tireSize;
-    this.tankSize = tankSize;
+  getTankSizeGallons(){
+    return this.tankSizeGallons;
   }
+  getCurrentFuelGallons(){
+    return this.currentFuelGallons;
+  }
+  setTankSizeGallons(data){
+    this.tankSizeGallons = data;
+  }
+  getTankSizeGallons(){
+    return this.tankSizeGallons;
+  }
+  setFuelTyoe(data){
+    this.fuelType  = data;
+  }
+  getFuelType(){
+    return this.fuelType;
+  }
+  setTopSpeedMPH(data){
+    this.topSpeedMPH = data;
+  }
+  getTopSpeedMPH(){
+    return this.topSpeedMPH;
+  }
+  getMPG() {
+    return this.mpg;
+  }
+
+  refuelGallons(gallons){
+
+    let totalFuel = this.currentFuelGallons + gallons;
+    if (totalFuel <= this.tankSizeGallons) {
+
+
+    console.log(this.make + ' ' + this.model + ' was refueled with ' + gallons + 'gallons');
+
+    this.currentFuelGallons = this.currentFuelGallons + gallons;
+
+    console.log(this.make + ' ' + this.model + ' now has a total of ' +   this.currentFuelGallons + 'gallons');
+    }else{
+    console.log('not enough room in the tank');
+
+    let freeSpace = this.tankSizeGallons = this.currentFuelGallons;
+    console.log('you have enough room to add' + freeSpace + ' gallons.');
+    }
+  }
+
+  drive(distance,speed){
+    let totalDistance = this.currentFuelGallons - 5 * this.mpg;
+
+    if(distance <= totalDistance){
+
+      if(speed <= this.topSpeedMPH){
+
+        let error = this.scenario();
+
+        if(error == 0) {
+
+          this.currentFuelGallons = this.currentFuelGallons - (distance/ this.mpg);
+          console.log('this truck drove for ' + distance + ' miles.');
+          console.log('this truck has ' + this.currentFuelGallons + ' gallons left.');
+          let error = this.scenario();
+
+         } else {
+        console.log('this truck can not go that fast. THis trucks top speed is' + this.topSpeedMPH);
+         }
+       }else{
+        console.log('the truck can not go that far. It can only go a total of  ' + totalDistance + 'miles before refueling');
+        }
+
+     }
+   }
+
+  scenario() {
+    let number = Math.random();
+
+    let incidents = [
+      'your engine blew',
+      'your tire blew out',
+      'a coyote crosses the path.',
+      'you get a DUI',
+      'a snowstorm approaches',
+      'you crash into a light pole'
+    ];
+
+    if (number > .2){
+      console.log('congrats nun happed');
+      return 0
+    }else{
+      let incidentNumber = Math.floor (Math.random() * 6);
+      console.log(incidents[incidentNumber]);
+      }
+
+  }
+
 }
+//variables defined
+let semiTruck = new Truck('kenworth','T500',2019,'black',100,'diesel',75,10);
+semiTruck.drive(50,40)
+
+// class Motorcycle extends Vehicle {
+//   constructor(make, model, year, color, engineCC, tireSize, tankSize){
+//     super(make, model, year, color);
+//     this.engineCC = engineCC;
+//     this.tireSize = tireSize;
+//     this.tankSize = tankSize;
+//   }
+// }
+
+//variables defined
+
+// let myCar = new Car('honda', 'accord', 2010, 'red', 'tankSize big')
+// let myElectricCar = new ElectricCar('elio', 'one', '2019', 'red', '200v', '40hrs', '2 years');
+// let myTruck = new Truck('ford', 'nissan', 2009, 'red', 'diesel', '130mph');
+// let myMotorcyle = new Motorcycle('Harley', 'MOTOHELI','2015', 'red', '120cc', '24 tiresize', '22tankSize');
+// let semiTruck = new Truck('kenworth','T500',2019,'black',100,'diesel',75,10);
 
 
-let myElectricCar = new ElectricCar('elio', 'one', '2019', 'red', '200v', '40hrs', '2 years');
-let myTruck = new Truck('ford', 'nissan', 2009, 'red', 'diesel', '130mph');
-let myMotorcyle = new Motorcycle('Harley', 'MOTOHELI','2015', 'red', '120cc', '24 tiresize', '22tankSize');
+
+//method override------->>>>>
+//ex1
 
 
-console.log(myElectricCar.model);
-console.log(myTruck.model);
-console.log(myMotorcyle.model)
 
+// example number 1
+// myCar.setColor('red');
+// let newColorOfMyCar = myCar.getColor();
+// console.log(newColorOfMyCar);
+
+//example number 2
+// myElectricCar.setBatterySize('250V');
+// let myNewBatterySize = myElectricCar.getBatterySize();
+
+//ex 3
+console.log(semiTruck.getTankSizeGallons());
+
+// console.log(myNewBatterySize);
 
 
 </script>
